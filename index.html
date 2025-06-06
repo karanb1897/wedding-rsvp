@@ -180,6 +180,32 @@
       }
     });
   </script>
+  <script>
+  // Wedding Date: 20 Feb 2026, 3:00 PM (Indian Time)
+  const weddingDate = new Date("2026-02-20T15:00:00+05:30").getTime();
+  const timerEl = document.getElementById("timer");
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+      timerEl.innerHTML = "🎉 It's Wedding Time! 🎉";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    timerEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
 <section id="countdown">
   <h2 style="text-align: center;">Countdown to Our Big Day 💍</h2>
   <div id="timer" style="font-size: 1.8rem; text-align: center; margin-bottom: 2rem; color: #d81b60;"></div>
